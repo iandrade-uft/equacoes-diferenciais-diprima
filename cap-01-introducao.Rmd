@@ -1,0 +1,83 @@
+---
+title: "Título"
+author: "Igo da Costa Andrade"
+
+# Metadados
+booktitle: "Equações Diferenciais Elementares e Problemas de Valores de Contorno"
+booksubtitle: ""
+bookauthors: "Boyce, W. E.; DiPrima, R. C."
+bookaddres: "Rio de Janeiro"
+bookpublisher: "LTC"
+bookyear: "2013"
+chaptertitle: "Introdução"
+chapternumber: "1"
+maincolor: "42629c"
+
+output: 
+  bookdown::pdf_document2:
+    template: template.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+COLORS <- c("blue", "red", "orange", "green", "purple")
+direction_field <- function(t, y, func, y_eq=c(),  k=1){
+  draw_df <- ""
+  draw_df <- sprintf("%s\\draw[-latex] (%.2f, 0)--(%.2f, 0) node[below] {$t$};", draw_df, min(t)-.5, max(t)+1)
+  draw_df <- sprintf("%s\\draw[-latex] (0, %.2f)--(0, %.2f) node[left] {$y$};", draw_df, min(y)-.5, max(y)+.5)
+  for (i in 1:length(y_eq)){
+    y_eqi <- y_eq[i]
+    color <- COLORS[i]
+    draw_df <- sprintf("%s \\draw[ultra thick, opacity=0.6, %s] (%.2f, %.2f)--(%.2f, %.2f) node[left, black, fill=white] {$%.2f$};", draw_df, color,  max(t)+1, y_eqi, min(t), y_eqi, y_eqi)
+  }
+  
+  for (ti in t){
+    for (yi in y) {
+      dydt <- func(ti, yi)
+      dt <- k * 1/sqrt(1+dydt^2)
+      dy <- k * dydt/sqrt(1+dydt^2)
+      draw_df <- sprintf("%s\\draw[-latex] (%.2f, %.2f) -- (%.2f , %.2f);", draw_df, ti, yi, ti+dt, yi+dy)
+    }
+  }
+  return(draw_df)
+}
+
+```
+
+
+
+\noindent Nos problemas de 1 a 6, desenha um campo de direções para a equação diferencial dada. Determine o comportamento de $y$ quando $t \rightarrow \infty$. Se esse comportamento depender do valor inicial de $y$ quando $t = 0$, descreva essa dependência.
+
+\begin{enumerate}
+    \item $y^\prime = 3 - 2y$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-1, to=3, by=.5)
+
+func <- function(t, y){
+  return(3-2*y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(1.5),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 &\Rightarrow 3 - 2y = 0 \Rightarrow y = \dfrac{3}{2} = 1.50
+\end{align*}
+
+Como ilustra o campo de direções abaixo, todas as soluções tendem à solução de equilíbrio quando $t\rightarrow \infty$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+\fimSol
