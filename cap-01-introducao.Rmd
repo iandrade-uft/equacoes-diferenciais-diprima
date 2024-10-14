@@ -475,6 +475,65 @@ Como ilustra o campo de direções  acima, o comportamento das soluções quando
 \fimSol
 
 
+\begin{enumerate}
+  \setcounter{enumi}{20}
+  \item Um pequeno lago contém, inicialmente, 1.000.000 galões (aproximadamene 1.550.000 litros) de água e uma quantidade deswconhecida de um produto químico indesejável. O lago recebe água contendo 0,01 grama dessa subtância por gação a uma taxa de 300 galões por hora. A mistura sai à mesma taxa, de modo que a quantidade de água no lago permanece constante. Suponha que o produto esteja distribuído uniformemente no lago.
+  \begin{enumerate}[label=(\alph*)]
+    \item Escreva uma equação diferencial para a quantidade de produto químico no lago em um instante qualquer.\\
+    %%
+    \iniSol
+    Seja $Q(t)$ a quantidade da substância presente no lago no instante de tempo $t$. 
+    \fimSol
+    \item Qual a quantidade de produto químico que estará no lago após um período muito longo de tempo? Essa quantidade-limite depende da quantidade presente inicialmente?
+  \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[resume]
+  \item Uma gota de chuva esférica evapora a uma taxa proporcional à sua área de superfície. Escreva uma eequação diferencial para o volume de uma gota de chuva em função do tempo.
+\end{enumerate}
+
+\iniSol
+  Se a gota evapora a uma taxa proporcional à sua área superficial, temos:
+  $$
+  \dfrac{dV}{dt} = - c S
+  $$
+  em que $V$ é o volume da gota, $S$ é a área superficial e $c$ é uma constante positiva que depende das condições do problema. O sinal negativo indica que a gota perde volume enquanto evapora.
+  
+  Sabendo que a gota possui formato esférico, temos:
+  \begin{align*}
+    \begin{cases}
+      V = \dfrac{4}{3} \pi r^3\\
+      S = 4 \pi r^2
+    \end{cases}
+    &\Rightarrow 
+    \dfrac{V^2}{S^3} = \dfrac{\left(\dfrac{4}{3}\pi r^3\right)^2}{\left(4\pi r^2\right)^3} = \dfrac{\dfrac{16}{9} \pi^2 r^6}{64 \pi^3 r^6} = \dfrac{1}{36 \pi} = \text{constante}\\
+    &\Rightarrow S^3 = 36\pi V^2\\
+    &\Rightarrow S = \sqrt{36\pi} V^{2/3}
+  \end{align*}
+  Substituindo na equação diferencial acima, tem-se:
+  $$
+  \dfrac{dV}{dt} = -k V^{2/3}
+  $$
+  em que $k = \sqrt{36 \pi} \cdot c$.
+\fimSol
+
+\begin{enumerate}[resume]
+  \item A lei do resfriamento de Newton dz que a temperatura de um objeto varia a uma taxa proporcional à diferença entre a temperatura do objeto e a temperatura do meio em que está inserido ( a temperatura do ambiente, na maior parte dos casos). Suponha que a temperatura ambienete é $70^\circ$F (cerca de $21^\circ$C) e que a taxa é de 0,05 por minuto. Escreva uma equação diferencial para a temperatura do objeto em qualquer instante $t$
+\end{enumerate}
+
+\iniSol
+  Seja $T(t)$ a temperatura do objeto no instante $t$. Definimos ainda $T_a = 70^\circ$F a temperatura do ambiente e $k = 0,05$ a taxa de proporcionalidade.  Seja ainda $\dfrac{dT}{dt}$ a taxa de variação da temperatura do objeto. Façamos algumas considerações:
+  \begin{itemize}
+    \item Se $T(t) = T_a$ (ou $T - T_a = 0$), não há troca de calor entre o objeto e o ambiente e a temperatura do objeto não sofre variação. Nesse caso, $\dfrac{dT}{dt} = 0$.
+    \item Se $T(t) > T_a$ (ou $T - T_a > 0$), o objeto perde calor e sua temperatura tende a diminuir. Nesse caso, $\dfrac{dT}{dt} < 0$.
+    \item Se $T < T_a$ (ou $T - T_a < 0$) o objeto recebe calor do ambiente e sua temperatura tende a aumentar. Nesse caso, $\dfrac{dT}{dt} > 0$.
+  \end{itemize}
+  Assim, observamos que o sinal da taxa de variação $\dfrac{dT}{dt}$ é sempre contrário ao sinal da diferença $T - T_a$. Portanto, a equação diferencial que descreve o fenômeno é:
+  $$
+  \dfrac{dT}{dt} = -k (T - T_a)
+  $$
+\fimSol
+
 
 
 
