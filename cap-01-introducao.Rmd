@@ -81,3 +81,403 @@ Como ilustra o campo de direções abaixo, todas as soluções tendem à soluç�
 \end{figure}
 
 \fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = 2y-3$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-1, to=3, by=.5)
+
+func <- function(t, y){
+  return(2*y-3)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(1.5),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 &\Rightarrow 2y - 3 = 0 \Rightarrow y = \dfrac{3}{2} = 1.50
+\end{align*}
+
+Como ilustra o campo de direções abaixo, todas as soluções afastam-se solução de equilíbrio quando $t\rightarrow \infty$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = 3+2y$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-3, to=1, by=.5)
+
+func <- function(t, y){
+  return(3+2*y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(-1.5),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 &\Rightarrow 3+2y = 0 \Rightarrow y = -\dfrac{3}{2} = -1.50
+\end{align*}
+
+Como ilustra o campo de direções abaixo, todas as soluções afastam-se solução de equilíbrio quando $t\rightarrow \infty$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = -1-2y$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-3, to=2, by=.5)
+
+func <- function(t, y){
+  return(-1-2*y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(-0.5),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 &\Rightarrow -1-2y = 0 \Rightarrow y = -\dfrac{1}{2} = -0.50
+\end{align*}
+
+Como ilustra o campo de direções abaixo, todas as soluções tendem à solução de equilíbrio quando $t\rightarrow \infty$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = 1+2y$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-3, to=2, by=.5)
+
+func <- function(t, y){
+  return(1+2*y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(-0.5),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 &\Rightarrow 1+2y = 0 \Rightarrow y = -\dfrac{1}{2} = -0.50
+\end{align*}
+
+Como ilustra o campo de direções abaixo, todas as soluções afastam-se da solução de equilíbrio quando $t\rightarrow \infty$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = y+2$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-3, to=1, by=.5)
+
+func <- function(t, y){
+  return(y+2)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(-2),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 &\Rightarrow y+2 = 0 \Rightarrow y = -2
+\end{align*}
+
+Como ilustra o campo de direções abaixo, todas as soluções afastam-se da solução de equilíbrio quando $t\rightarrow \infty$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+\fimSol
+
+\noindent Em cada um dos problemas de 7 a 10, escreva uma equação diferencial da forma $dy/dt = ay+b$ cujas soluções têm o comportamento descrito quando $t\rightarrow \infty$.
+
+\begin{enumerate}[resume]
+    \item Todas as soluções tendem a $y = 3$.
+\end{enumerate}
+
+\iniSol
+$$
+\dfrac{dy}{dt} = 9 - 3y
+$$
+\fimSol
+
+\begin{enumerate}[resume]
+    \item Todas as soluções tendem a $y = 2/3$.
+\end{enumerate}
+
+\iniSol
+$$
+\dfrac{dy}{dt} = 2 - 3y
+$$
+\fimSol
+
+\begin{enumerate}[resume]
+    \item Todas as soluções se afastam de $y = 2$.
+\end{enumerate}
+
+\iniSol
+$$
+\dfrac{dy}{dt} = 4y - 8
+$$
+\fimSol
+
+\begin{enumerate}[resume]
+    \item Todas as soluções se afastam de  $y = 1/3$.
+\end{enumerate}
+
+\iniSol
+$$
+\dfrac{dy}{dt} =  3y - 1
+$$
+\fimSol
+
+\noindent Nos problemas de 11 a 14, desenhe um campo de direções para a equação diferencial dada. Baseado no campo de direções, determine o comportamento de $y$ quando $t \rightarrow \infty$. Se esse comportamento depender do valor inicial de $y$  quando $t=0$, descreva essa dependência. Note que nesses problemas, as equações não são da forma $y^\prime = ay +b$, e o comportamento das soluções é um pouco mais complicado do que o das equações no texto.
+
+\begin{enumerate}[resume]
+    \item $y^\prime = y(4-y)$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=8, by=.5)
+y <- seq(from=-2, to=6, by=.5)
+
+func <- function(t, y){
+  return(y*(4-y))
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(0, 4),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 \Rightarrow y(4-y) = 0 \Rightarrow 
+    \begin{cases}
+      y = 0\\
+      4-y =0
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        y=0\\
+        y =4
+    \end{cases}
+\end{align*}
+
+Observemos que existem duas soluções de equilíbrio: $y = 0$ e $y = 4$, destacadas no campo de direções abaixo.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+Como ilustra o campo de direções  acima, o comportamento das soluções quando $t \rightarrow \infty$ depende do valor inicial de $y$ em $t = 0$. De fato, seja a condição inicial $y_0 = y(t=0)$. Então 
+\begin{itemize}
+ \item Soluções em que $y_0 < 0$ afastam-se da solução de equilíbrio $y = 0$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = -\infty$ . 
+ \item Soluções em que $y_0 > 4$ tendem  à solução de equilíbrio $y = 4$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = 4$ .
+ \item Soluções em que $0 < y_0 < 4$ afastam-se da solução de equilíbrio $y = 0$ e tendem à solução $y = 4$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = 4$ .
+\end{itemize}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = -y(5-y)$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=8, by=.5)
+y <- seq(from=-2, to=6, by=.5)
+
+func <- function(t, y){
+  return(-y*(5-y))
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(0, 5),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 \Rightarrow -y(5-y) = 0 \Rightarrow 
+    \begin{cases}
+      -y = 0\\
+      5-y =0
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        y=0\\
+        y =5
+    \end{cases}
+\end{align*}
+
+Observemos que existem duas soluções de equilíbrio: $y = 0$ e $y = 5$, destacadas no campo de direções abaixo.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+Como ilustra o campo de direções  acima, o comportamento das soluções quando $t \rightarrow \infty$ depende do valor inicial de $y$ em $t = 0$. De fato, seja a condição inicial $y_0 = y(t=0)$. Então 
+\begin{itemize}
+ \item Soluções em que $y_0 < 0$ tendem à solução de equilíbrio $y = 0$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = 0$ . 
+ \item Soluções em que $y_0 > 5$ afastam-se da solução de equilíbrio $y = 5$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = \infty$.
+ \item Soluções em que $0 < y_0 < 5$ afastam-se da solução de equilíbrio $y = 5$ e tendem à solução $y = 0$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = 0$ .
+\end{itemize}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = y^2$
+\end{enumerate}
+
+\iniSol
+
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-2.5, to=2.5, by=.5)
+
+func <- function(t, y){
+  return(y^2)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(0),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 \Rightarrow y^2 = 0 \Rightarrow  y = 0
+\end{align*}
+
+Observemos que existe uma solução de equilíbrio: $y = 0$, destacada no campo de direções abaixo.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+Como ilustra o campo de direções  acima, o comportamento das soluções quando $t \rightarrow \infty$ depende do valor inicial de $y$ em $t = 0$. De fato, seja a condição inicial $y_0 = y(t=0)$. Então 
+\begin{itemize}
+ \item Soluções em que $y_0 < 0$ tendem à solução de equilíbrio $y = 0$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = 0$ . 
+ \item Soluções em que $y_0 > 0$ afastam-se da solução de equilíbrio $y = 0$. Ou seja,   $\displaystyle \lim_{t \rightarrow \infty} y = \infty$.
+\end{itemize}
+
+\fimSol
+
+\begin{enumerate}[resume]
+    \item $y^\prime = y (y-2)^2$
+\end{enumerate}
+
+\iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=.5)
+y <- seq(from=-1, to=3, by=.5)
+
+func <- function(t, y){
+  return(y*(y-2)^2)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(0, 2),  k=0.4)
+```
+
+Inicialmente, determinemos a solução de equilíbrio:
+
+\begin{align*}
+    y^\prime = 0 \Rightarrow y(y-2)^2 = 0 &\Rightarrow 
+    \begin{cases}
+        y = 0\\
+        y = 2
+    \end{cases}
+\end{align*}
+
+Observemos que existem duas soluções de equilíbrio: $y = 0$ $y = 2$, destacadas no campo de direções abaixo.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+
+Como ilustra o campo de direções  acima, o comportamento das soluções quando $t \rightarrow \infty$ depende do valor inicial de $y$ em $t = 0$. De fato, seja a condição inicial $y_0 = y(t=0)$. Então 
+\begin{itemize}
+    \item Para $y_0 < 0$, as soluções afastam-se da solução de equilíbrio $y =0$ e tendem a $-\infty$.
+    \item Para $y_0 > 2$, as soluções afastam-se da solução de equilíbrio $y =2$ e tendem a $+\infty$.
+    \item Para $0 < y_0 < 2$, as soluções afastam-se da solução de equilíbrio $y =0$ e tendem à solução $y = 2$.
+\end{itemize}
+\fimSol
+
+
+
+
+
+
+
+
