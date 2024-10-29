@@ -539,22 +539,33 @@ Como ilustra o campo de direções  acima, o comportamento das soluções quando
   \setcounter{enumi}{24}
   \item Para pequenos objetos, caino devagar, a hipótese feita no texto sobre a resistência do ar ser proporcional à velocidade é boa. Para objetos maiores, caindo mais rapidamente, é mais preciso supor que a resistência do ar é proporcional ao quadrado da velocidade.
   \begin{enumerate}[leftmargin=*, label=(\alph*)]
-    \item Escreva uma equação diferencial para a velocidade de um objeto em queda de massa $m$ se a resistência do ar é proporcional ao quadrado da velocidade.
+    \item Escreva uma equação diferencial para a velocidade de um objeto em queda de massa $m$ se a resistência do ar é proporcional ao quadrado da velocidade.\\
+    %%
     \iniSol
       O diagrama abaixo mostra as forças envolvidas durante o movimento de queda:
       \begin{figure}[H]
         \centering
         \begin{tikzpicture}
-          \filldraw (0,0) circle (5pt) node[right] {$m$};
-          \draw[thick, -latex] (0,0) -- (0, -2) node[midway, left, xshift=5pt] {$mg$};
+          \filldraw (0,0) circle (5pt) node[right, xshift=5pt] {$m$};
+          \draw[thick, -latex] (0,0) -- (0, -2) node[midway, left, xshift=-3pt] {$mg$};
           \draw[thick, -latex] (0,0) -- (0, 1) node[midway, left] {$-kv^2$};
-          \draw[latex-latex] (-1, 0) node[right] {$x$} -- ++(-1, 0) -- ++(0, -1) node[left] {$y$};
+          \draw[latex-latex] (-2, 0) node[right] {$x$} -- ++(-1, 0) -- ++(0, -1) node[left] {$y$};
         \end{tikzpicture}
       \end{figure}
       Aplicando a Segunda Lei de Newton, obtemos a seguinte equação diferencial para a velocidade $v$ durante a queda:
       $$
       m \dfrac{dv}{dt} = mg - kv^2 \Rightarrow \dfrac{dv}{dt} = g - \dfrac{k}{m}v^2
       $$
+    \fimSol
+    \item Determine a velocidade-limite após um longo período de tempo.\\
+    %%
+    \iniSol
+      Durante a queda, a velocidade do objeto tende a aumentar, devido à ação da aceleração da gravidade $g$. Por sua vez, a resistência do ar $-kv^2$ também cresce em módulo, mas somente até atingir o equilíbrio com a força peso $mg$. Assim, a velocidade-limite será dada por:
+      \begin{align*}
+        \dfrac{dv}{dt} = 0 &\Rightarrow g - \dfrac{k}{m}v_{lim}^2 = 0\\
+        &\Rightarrow v_{lim}^2 = \dfrac{mg}{k}\\
+        &\Rightarrow v_{lim} = \sqrt{\dfrac{mg}{k}}
+      \end{align*}
     \fimSol
   \end{enumerate}
 \end{enumerate}
