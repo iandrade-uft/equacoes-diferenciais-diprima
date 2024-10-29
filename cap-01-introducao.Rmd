@@ -26,10 +26,12 @@ direction_field <- function(t, y, func, y_eq=c(),  k=1){
   draw_df <- ""
   draw_df <- sprintf("%s\\draw[-latex] (%.2f, 0)--(%.2f, 0) node[below] {$t$};", draw_df, min(t)-.5, max(t)+1)
   draw_df <- sprintf("%s\\draw[-latex] (0, %.2f)--(0, %.2f) node[left] {$y$};", draw_df, min(y)-.5, max(y)+.5)
-  for (i in 1:length(y_eq)){
-    y_eqi <- y_eq[i]
-    color <- COLORS[i]
-    draw_df <- sprintf("%s \\draw[ultra thick, opacity=0.6, %s] (%.2f, %.2f)--(%.2f, %.2f) node[left, black, fill=white] {$%.2f$};", draw_df, color,  max(t)+1, y_eqi, min(t), y_eqi, y_eqi)
+  if (length(y_eq)>0){
+    for (i in 1:length(y_eq)){
+      y_eqi <- y_eq[i]
+      color <- COLORS[i]
+      draw_df <- sprintf("%s \\draw[ultra thick, opacity=0.6, %s] (%.2f, %.2f)--(%.2f, %.2f) node[left, black, fill=white] {$%.2f$};", draw_df, color,  max(t)+1, y_eqi, min(t), y_eqi, y_eqi)
+    }
   }
   
   for (ti in t){
@@ -567,7 +569,322 @@ Como ilustra o campo de direções  acima, o comportamento das soluções quando
         &\Rightarrow v_{lim} = \sqrt{\dfrac{mg}{k}}
       \end{align*}
     \fimSol
+   %% 
+\item Se $m=10$ kg, encontre o coeficiemtende resistência do ar de modo que a velocidade-limite seja $49$ m/s.\\
+  \iniSol
+    \begin{align*}
+      \Rightarrow v_{lim} = \sqrt{\dfrac{mg}{k}} &\Rightarrow k = \dfrac{mg}{v_{\infty}^2}\\
+      &\Rightarrow k = \dfrac{10 \cdot 9,8}{49^2} = \dfrac{2}{49}` \text{kg}\cdot\text{s}^2/\text{m}^2
+    \end{align*}
+  \fimSol
+  \item Usando os dados em (c), desenhe um campo de direções e compare-o com a Fig. 1.13.\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=50, by=50/20)
+y <- seq(from=0, to=1.5*49, by=1.5*49/20)
+
+m <- 10
+g <- 9.8
+k <- 2/49
+
+func <- function(t, y){
+  return(g - (k/m)*y^2)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(49),  k=2)
+```
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.1]
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
   \end{enumerate}
+\end{enumerate}
+
+\noindent Nos problemas de 26 a 33, desenhe um campo de direções para a equação diferencial dada. Baseado no campo de direções, determine o comportamento de $y$ quando $t \rightarrow \infty$. Se esse comportamento depender do valor inicial de $y$ em $t=0$, descreva essa dependência. Note que a expressão depende de $t$, além de depender de $y$; portanto, suas soluções podem exibir um comportamento mais complicado do que as do texto.
+
+\begin{enumerate}[resume]
+  \item $y^{\prime} = -2 + t - y$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=0.5)
+y <- seq(from=-2.5, to=2.5, by=0.5)
+
+func <- function(t, y){
+  return(-2+t-y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.4)
+
+```
+
+Soluções de Equilíbrio ($y^\prime = 0$):
+
+\begin{align*}
+  y^\prime = 0 &\Rightarrow -2+t-y = 0 \Rightarrow y_{eq}(t) = t-2
+\end{align*}
+
+Quando $t \rightarrow \infty$:
+
+$$
+\lim_{t \rightarrow \infty} y_{eq}(t) = \lim_{t \rightarrow \infty} t-2 = +\infty
+$$
+De fato, como mostrado no campo de direções abaixo, todas as soluções tendem ao infinito após um longo período de tempo, independentemente da condição inicial em $t=0$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+
+\begin{enumerate}[resume]
+  \item $y^{\prime} = te^{-2t} - 2y$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=0.5)
+y <- seq(from=-2.5, to=2.5, by=0.5)
+
+func <- function(t, y){
+  return(t*exp(-2*t)-2*y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.4)
+
+```
+
+Soluções de Equilíbrio ($y^\prime = 0$):
+
+\begin{align*}
+  y^\prime = 0 &\Rightarrow te^{-2t} - 2y = 0 \Rightarrow y_{eq}(t) = \dfrac{1}{2}te^{-2t}
+\end{align*}
+
+Quando $t \rightarrow \infty$:
+
+$$
+\lim_{t \rightarrow \infty} y_{eq}(t) = \lim_{t \rightarrow \infty} \dfrac{1}{2}te^{-2t} = 0
+$$
+De fato, como mostrado no campo de direções abaixo, todas as soluções tendem a zero após um longo período de tempo, independentemente da condição inicial em $t=0$.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+\begin{enumerate}[resume]
+  \item $y^\prime = e^{-t}+y$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=0.5)
+y <- seq(from=-2, to=2, by=0.5)
+
+func <- function(t, y){
+  return(exp(-t)+y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.4)
+```
+
+Solução de Equilíbrio ($y^\prime = 0$):
+
+$$
+y^{\prime} = 0 \Rightarrow e^{-t}+y = 0 \Rightarrow y_{eq} (t) = -e^{-t}
+$$
+
+Como mostrado no campo de direções abaixo, todas as soluções afastam-se de $y = 0$ após um longo período de tempo. Para a condição inicial $y(t = 0) > 0$, as soluções tendem  a $+\infty$. Para a condição inicial $y(t = 0) < 0$, as soluções tendem  a $-\infty$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+
+
+\begin{enumerate}[resume]
+  \item $y^\prime = t+2y$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=0.5)
+y <- seq(from=-2.5, to=2.5, by=0.5)
+
+func <- function(t, y){
+  return(t+2*y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.4)
+
+df <- sprintf("%s\\draw[red] (0,0)--(5, -5/2) node[black, fill=white, below, yshift=-5pt] {$y_{eq}(t) = -t/2$};", df)
+```
+
+Solução de Equilíbrio ($y^\prime = 0$):
+
+$$
+y^{\prime} = 0 \Rightarrow t+2y = 0 \Rightarrow y_{eq} (t) = -\dfrac{t}{2}
+$$
+
+Quando $t \rightarrow \infty$:
+
+$$
+\lim_{t \rightarrow \infty} y_{eq}(t) = \lim_{t \rightarrow \infty}  -\dfrac{t}{2} = -\infty
+$$
+Observemos que as soluções afastem-se da solução de equilíbrio. Assim, caso $y>0$ em $t>0$, as soluções tendem a $+\infty$. Caso contrário, as soluções tendem a $-\infty$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1]
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+\begin{enumerate}[resume]
+  \item $y^\prime = 3\sin{t}+1 +y$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0, to=5, by=0.5)
+y <- seq(from=-4, to=3, by=0.5)
+
+func <- function(t, y){
+  return(3*sin(t)+1+y)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.4)
+```
+  Solução de equilíbrio ($y^\prime = 0$):
+  $$
+  y^{\prime} = 0 \Rightarrow 3\sin{t}+1 +y=0 \Rightarrow y_{eq}(t) = -1 - 3\sin{t}
+  $$
+  
+  
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+
+
+%%%%
+\begin{enumerate}[resume]
+  \item $y^\prime = 2t-1-y^2$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=0.5, to=10.5, by=0.5)
+y <- seq(from=-5, to=5, by=0.5)
+
+func <- function(t, y){
+  return(2*t-1-y^2)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.3)
+
+teq <- seq(from=0.5, to=10, length=101)
+yeq1 <- sqrt(2*teq-1)
+yeq2 <- -yeq1
+for (i in 1:100) {
+  df <- sprintf("%s\\draw[red] (%.2f, %.2f)--(%.2f, %.2f);", df, teq[i], yeq1[i], teq[i+1], yeq1[i+1])
+  df <- sprintf("%s\\draw[blue] (%.2f, %.2f)--(%.2f, %.2f);", df, teq[i], yeq2[i], teq[i+1], yeq2[i+1])
+}
+df <- sprintf("%s\\node[fill=white] at (7, 5) {$y_{eq1}(t) = + \\sqrt{2t-1}$};", df)
+df <- sprintf("%s\\node[fill=white] at (7, -5) {$y_{eq2}(t) = - \\sqrt{2t-1}$};", df)
+```
+  Solução de equilíbrio ($y^\prime = 0$):
+  \begin{align*}
+  y^{\prime} = 0 \Rightarrow 2t-1-y^2=0 \Rightarrow y_{eq}(t) = 
+  \begin{cases}
+  + \sqrt{2t-1}\quad,\; \text{se} \; t > 0;\\
+  - \sqrt{2t-1}\quad,\; \text{se} \; t < 0;\\
+  \end{cases}
+  \end{align*}
+  Como ilustrado no campo de direções abaixo, as soluções aproximan-se da solução de equilíbrio $y_{eq1} = +\sqrt{2t-1}$ e afastam-se da solução de equilíbrio $y_{eq2} = -\sqrt{2t-1}$. 
+  
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+\begin{enumerate}[resume]
+  \item $y^\prime = -(2t+y)/2y$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=-5, to=5, by=0.5)
+y <- seq(from=-5.1, to=5.1, by=0.8)
+
+func <- function(t, y){
+  return(-(2*t+y)/(2*y))
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.4)
+
+```
+  Solução estacionária ($y^\prime = 0$):
+  \begin{align*}
+    y^\prime = 0 \Rightarrow -(2t+y)/2y =0 \Rightarrow 2t+y = 0 \Rightarrow y_eq(t) = -2t
+  \end{align*}
+  
+  Campo de direções:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
+\end{enumerate}
+
+
+\begin{enumerate}[resume]
+  \item $y^\prime = \dfrac{y^3}{6} - y - \dfrac{t^2}{3}$\\
+  %%
+  \iniSol
+```{r, include=FALSE}
+t <- seq(from=-5, to=5, by=1)
+y <- seq(from=-5, to=5, by=1)
+
+func <- function(t, y){
+  return(y^3/6 - y - t^2/3)
+}
+
+df <- direction_field(t=t, y=y, func=func, y_eq=c(),  k=0.5)
+
+```
+  Campo de direções:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  `r df`
+\end{tikzpicture}
+\end{figure}
+  \fimSol
 \end{enumerate}
 
 
